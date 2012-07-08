@@ -1,4 +1,8 @@
-*.log
-*.pot
+ENV
+.idea
+log
 *.pyc
+*.gz
+fab_settings.py
 local_settings.py
+src/media/img

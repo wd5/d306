@@ -1,0 +1,17 @@
+# production
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '%(DATABASE_HOST)s',
+        'NAME': '%(DATABASE_DB)s',
+        'USER': '%(DATABASE_USER)s',
+        'PASSWORD': '%(DATABASE_PASSWORD)s',
+    }
+}
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_ACCESS_KEY_ID = '%(SES_ACCESS_KEY_ID)s'
+AWS_SECRET_ACCESS_KEY = '%(SES_SECRET_ACCESS_KEY)s'
+
+SECRET_KEY = '%(DJANGO_SECRET_KEY)s'

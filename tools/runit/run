@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo $(date) restarted >> /var/log/projects/d306/restart.log
+exec chpst -u madera /home/madera/projects/d306/ENV/bin/python /home/madera/projects/d306/src/manage.py runfcgi minspare=1 maxspare=1 errlog=/var/log/projects/d306/fcgi-error.log method=prefork host=127.0.0.1 port=3037 pidfile=/home/madera/projects/d306/pid daemonize=false

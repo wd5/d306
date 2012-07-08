@@ -1,0 +1,19 @@
+﻿{% extends "base.html" %}
+{% load tagging_tags %}
+{% load common %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+	<ul class="article_announce">
+	{% for article in articles %}
+        <li><div class=date>{{ article.date_created|human_date }}</div>
+            <h2>{{ article.title|safe }}</h2>
+            <p>{{ article.announce|markup:"safe" }}</p>
+            <a href="{% url article article.id %}">Далее...</a>
+        </li>
+	{% endfor %}
+	</ul>
+
+{% endblock %}

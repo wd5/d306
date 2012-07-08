@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %} Клуб Дэ</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/styles.css" />
+</head>
+
+<body>
+
+<center>
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr valign="bottom" height="450">
+            <td>
+                <img src="{{ MEDIA_URL }}i/de.png">
+            </td> </tr>
+    </table>
+    <br>
+    <table width="100%" border="0" cellpadding="0" cellspacing="10">
+        <tr valign="top" align="center">
+            <td><a href="{% url article 1 %}"><span>О НАС</span></a></td>
+            <td><a href="{% url schedule %}"><span>РАСПИСАНИЕ</span></a></td>
+            <td><a href="{% url category 1 %}"><span>СОБЫТИЯ</span></a></td>
+            <td><a href="{% url category 2 %}"><span>НАПРАВЛЕНИЯ</span></a></td>
+            <td><a href="{% url article 2 %}"><span>ВЕДУЩИЕ</span></a></td>
+            <td><a href="{% url article 3 %}"><span>КОНТАКТЫ</span></a></td>
+            <td><a href="{% url article 4 %}"><span>АРЕНДА ЗАЛА</span></a></td>
+        </tr>
+    </table>
+    <hr color="e6b300" size="5">
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="40">
+        <tr valign="top">
+
+            <td width="70%">
+
+                <div class=text>
+
+                    {% block content %}
+
+                    <ul>
+                        <li><div class=date>24.02.2012.</div>
+                            <p><h2>Форсайт</h2>
+                            <p>Форсайт (от англ. foresight — «взгляд в будущее») — инструмент формирования приоритетов и мобилизации большого количества участников для достижения качественно новых результатов в сфере науки и технологий, экономики, государства и общества. Форсайт – это технология, позволяющая всесторонне оценить любой проект.
+                                <a href="/">Далее...</a>
+                            <p>
+                                <li><div class=date>24.02.2012.</div>
+                            <p><h2>Расстановки</h2>
+                            <p>Системные расстановки – способ решения различных жизненных проблем. Проблемная ситуация «расставляется» с помощью членов группы, которые играют роли участников ситуации (родители, дети, супруги) или ее элементов (цель, препятствие, болезнь и пр.).
+                                Это краткосрочная психотерапевтическая методика, опирающаяся на психоанализ, психодраму, семейную терапию, трансовые техники, феномен морфогенетического поля. <a href="/">Далее...</a>
+                            <p>
+                                <li><div class=date>24.02.2012.</div>
+                            <p><h2>Ближайшие события</h2>
+                            <p>Разновсякие анонсы, отчеты, материалы по мере поступления (как на uralsocionics.ru). Штук 5-7. <a href="/">Далее...</a>
+                            <p>
+                                <li><div class=date>24.02.2012.</div>
+                            <p><h2>Ближайшие события</h2>
+                            <p>Разновсякие анонсы, отчеты, материалы по мере поступления (как на uralsocionics.ru). Штук 5-7. <a href="/">Далее...</a>
+                            <p>
+                                <li><div class=date>24.02.2012.</div>
+                            <p>Сайт запущен. Выложено <a href="/">расписание</a> ближайших групп.
+                            <p>
+                    </ul>
+
+                    {% endblock content %}
+                </div>
+            </td>
+
+            <td width="30%">
+                <div class=text>
+                    {% if user.is_authenticated %}
+                        <b>{{ user.username }} (<a href='{% url logout %}'>выход</a>)</b>
+                    {% else %}
+                        <a href='{% url login %}'>Вход</a> / <a href="{% url registration %}">Регистрация</a>
+                    {% endif %}
+
+                    <p><br>
+                    <h2>Ближайшие события:</h2>
+                    <p><div class=date>21 февраля, 19.00</div>
+                    <a href="/">Матепитие</a>
+                    <p><div class=date>23 февраля, 17.00</div>
+                    <a href="/">Чайно-музыкальная встреча. Музыка Ра</a>
+                    <p><div class=date>24 февраля, 19.00</div>
+                    <a href="/">Клуб Го</a>
+                    <p><div class=date>25 февраля, 12.00</div>
+                    <a href="/">Системные расстановки и чайная церемония</a>
+
+
+                    <p><br>
+                    <h2>Ссылки:</h2>
+                    <p><a href="/">Центр системных расстановок</a>
+                    <br><a href="/">Клуб Дао Чая</a>
+                    <br><a href="http://uralsocionics.ru">Уральская школа соционики</a>
+                    <br><a href="/">Самопознание.ру</a>
+
+                </div>
+
+            </td>
+        </tr>
+
+    </table>
+    <hr color="00669a" size="5">
+</center>
+<div class=text><small><div style="margin-bottom:10; margin-left:10;">Клуб Дэ (с) 2012</div></small></div>
+
+</div>
+
+</body>
+</html>
