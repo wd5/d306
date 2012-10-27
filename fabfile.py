@@ -131,7 +131,7 @@ def local_settings():
 
 def nginx():
     with settings(user='ubuntu'):
-        sudo('cp %(directory)s/tools/nginx/90-d306.conf /etc/nginx/conf-available/90-d306.conf' % env, shell=False)
+        sudo('cp %(directory)s/tools/nginx/90-d306.conf /etc/nginx/sites-available/90-d306.conf' % env, shell=False)
         #sudo('/etc/init.d/nginx restart')
 
 
