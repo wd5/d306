@@ -69,6 +69,9 @@ def init():
             sudo('mkdir -p /var/log/projects/d306')
             sudo('chmod 777 /var/log/projects/d306')
 
+        if exists('/etc/nginx/sites-enabled/default'):
+            sudo('rm /etc/nginx/sites-enabled/default')
+
         if not exists('/etc/nginx/listen'):
             put('tools/nginx/listen', '/etc/nginx/listen', use_sudo=True)
         if not exists('/etc/nginx/fastcgi_params_extended'):
