@@ -2,6 +2,7 @@
 
 import boto
 import time
+from datetime import date
 
 from fabric.api import *
 from fabric.contrib.files import exists, sed, append, upload_template, uncomment
@@ -150,10 +151,18 @@ def manage_py(command):
 def dump():
     with settings(user=SSH_USER):
         with cd(env.directory):
-            TMP_FILE = run("date +/tmp/d306_backup_%Y%m%d_%H%M.sql.gz")
-            run("mysqldump -u %(DATABASE_USER)s -p%(DATABASE_PASSWORD)s -h %(DATABASE_HOST)s %(DATABASE_DB)s | gzip > " % globals() + TMP_FILE)
-            run("tools/yandex_narod.sh -l %(DUMP_ACCOUNT_NAME)s@yandex.ru -p %(DUMP_PASSWORD)s " % globals() + TMP_FILE)
-            run("rm %s" % TMP_FILE)
+            tmp_filename = run("date +/tmp/d306_backup_%Y%m%d_%H%M.sql.gz")
+            month_dir = date.today().strftime("%Y_%m")
+            backup_dir = "Backup/db/%s" % month_dir
+            webdav_command =\
+            "import easywebdav;"\
+            "webdav = easywebdav.connect('webdav.yandex.ru', username='%s', password='%s', protocol='https');"\
+            "webdav.mkdirs('%s');"\
+            "webdav.upload('%s', '%s/%s');" % (DUMP_ACCOUNT_NAME, DUMP_PASSWORD, backup_dir, tmp_filename, backup_dir, tmp_filename.split('/')[-1])
+
+            run("mysqldump -u %(DATABASE_USER)s -p%(DATABASE_PASSWORD)s -h %(DATABASE_HOST)s %(DATABASE_DB)s | gzip > " % globals() + tmp_filename)
+            virtualenv('python -c "%s"' % webdav_command)
+            run("rm %s" % tmp_filename)
 
 
 def migrate():
